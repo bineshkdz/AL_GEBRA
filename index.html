@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>AL GEBRA | IT Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,159 +17,478 @@
 
   <style>
     body {
-      background: #0b0f1c;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+      background-attachment: fixed;
       color: white;
       font-family: "Inter", sans-serif;
+      min-height: 100vh;
     }
 
     /* Neon animated heading */
     .neon-text {
       background: linear-gradient(90deg, #4aa1ff, #8e54ff, #ff4dc1);
       background-size: 300%;
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: neonMove 6s ease infinite;
     }
+
     @keyframes neonMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     /* Glass Card */
     .glass {
-      background: rgba(255,255,255,.06);
+      background: rgba(255, 255, 255, .06);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.08);
+      border: 1px solid rgba(255, 255, 255, .08);
       transition: .3s ease;
     }
+
     .glass:hover {
-      background: rgba(255,255,255,.1);
+      background: rgba(255, 255, 255, .1);
       transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(0,180,255,.5);
+      box-shadow: 0 0 20px rgba(0, 180, 255, .5);
+    }
+
+    /* Image Slider Styles */
+    .slider-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+    }
+
+    .slider-wrapper {
+      display: flex;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide {
+      min-width: 100%;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.6;
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.75) 0%, rgba(15, 52, 96, 0.6) 100%);
+      z-index: 1;
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 40px;
+      max-width: 800px;
+    }
+
+    .slide-content h3 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+    }
+
+    .slide-content p {
+      font-size: 1.25rem;
+      color: #e0e0e0;
+      line-height: 1.6;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, .7);
+    }
+
+    /* Navigation Arrows */
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(255, 255, 255, .1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .slider-nav:hover {
+      background: rgba(255, 255, 255, .2);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .slider-nav.prev {
+      left: 20px;
+    }
+
+    .slider-nav.next {
+      right: 20px;
+    }
+
+    /* Dots Navigation */
+    .slider-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dot.active {
+      background: white;
+      width: 30px;
+      border-radius: 6px;
+    }
+
+    /* Fade in animation for slide content */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide.active .slide-content {
+      animation: fadeInUp 0.8s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide {
+        height: 400px;
+      }
+
+      .slide-content h3 {
+        font-size: 2rem;
+      }
+
+      .slide-content p {
+        font-size: 1rem;
+      }
+
+      .slider-nav {
+        width: 40px;
+        height: 40px;
+      }
     }
   </style>
 </head>
+
 <body>
+  <!-- NAVBAR -->
+  <header class="bg-black/50 backdrop-blur-sm sticky top-0 z-50">
+    <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="font-bold text-lg neon-text">AL GEBRA</h1>
+      <ul class="flex gap-6 text-gray-300">
+        <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-400">About</a></li>
+        <li><a href="services.html" class="hover:text-blue-400">Services</a></li>
+        <li><a href="products.html" class="hover:text-blue-400">Products</a></li>
+        <li><a href="gallery.html" class="hover:text-blue-400">Gallery</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- NAVBAR -->
-<header class="bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-  <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-    <h1 class="font-bold text-lg neon-text">AL GEBRA</h1>
-    <ul class="flex gap-6 text-gray-300">
-      <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
-      <li><a href="about.html" class="hover:text-blue-400">About</a></li>
-      <li><a href="services.html" class="hover:text-blue-400">Services</a></li>
-      <li><a href="contact.html" class="hover:text-blue-400">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- HERO SECTION -->
+  <section class="text-center py-12 px-6 fade-in">
+    <h2 class="text-5xl md:text-7xl font-extrabold neon-text mb-6">AL GEBRA</h2>
+    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+      Empowering your business with next-generation <span class="text-blue-400 font-semibold">IT Solutions</span>,
+      <span class="text-purple-400 font-semibold">Hardware</span>, and <span class="text-pink-400 font-semibold">Digital
+        Strategies</span>.
+    </p>
+  </section>
 
-<!-- HERO -->
-<section class="text-center py-24 px-6">
-  <h2 class="text-5xl md:text-7xl font-extrabold neon-text">AL GEBRA</h2>
-
-  <p class="mt-6 text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
-    Accounting Billing Software • Hardware IT devices installation •
-    Network Services • Computer & Software Designing •
-    E-Commerce Through Social Media & Websites •
-    Information Technology Consultancy.
-  </p>
-
-  <a href="contact.html" class="mt-10 inline-block px-10 py-3 text-lg bg-blue-600 hover:bg-blue-700 rounded-md font-semibold">
-    Get in Touch
-  </a>
-</section>
-
-<!-- QUICK NAV CARDS -->
-<section class="max-w-6xl mx-auto px-6 pb-20 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-
-  <a href="about.html">
-    <div class="glass rounded-xl p-6 text-center">
-      <i class="fa-solid fa-circle-info text-4xl text-blue-300 mb-3"></i>
-      <h3 class="text-xl font-semibold">Company Profile</h3>
+  <!-- Image Slider Section -->
+  <section class="slider-container mb-20">
+    <div class="slider-wrapper" id="sliderWrapper">
+      <!-- Slide 1: IT Solutions -->
+      <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200" alt="IT Solutions">
+        <div class="slide-content">
+          <h3 class="neon-text">IT Solutions & Hardware</h3>
+          <p>Professional hardware installation, network services, and comprehensive IT infrastructure solutions for
+            your business</p>
+        </div>
+      </div>
+      <!-- Slide 2: Accounting Software -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1200" alt="Accounting Software">
+        <div class="slide-content">
+          <h3 class="neon-text">Accounting & Billing Software</h3>
+          <p>Streamline your business operations with our cutting-edge accounting and billing solutions</p>
+        </div>
+      </div>
+      <!-- Slide 3: E-Commerce -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200" alt="E-Commerce Solutions">
+        <div class="slide-content">
+          <h3 class="neon-text">E-Commerce Solutions</h3>
+          <p>Grow your business online with our social media marketing and website development services</p>
+        </div>
+      </div>
+      <!-- Slide 4: IT Consultancy -->
+      <div class="slide">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200" alt="IT Consultancy">
+        <div class="slide-content">
+          <h3 class="neon-text">IT Consultancy</h3>
+          <p>Expert guidance for your technology needs, from software design to complete digital transformation</p>
+        </div>
+      </div>
     </div>
-  </a>
-
-  <a href="services.html">
-    <div class="glass rounded-xl p-6 text-center">
-      <i class="fa-solid fa-gears text-4xl text-purple-300 mb-3"></i>
-      <h3 class="text-xl font-semibold">Services</h3>
+    <!-- Navigation Arrows -->
+    <button class="slider-nav prev" onclick="moveSlide(-1)">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slider-nav next" onclick="moveSlide(1)">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+    <!-- Dots Navigation -->
+    <div class="slider-dots">
+      <span class="dot active" onclick="goToSlide(0)"></span>
+      <span class="dot" onclick="goToSlide(1)"></span>
+      <span class="dot" onclick="goToSlide(2)"></span>
+      <span class="dot" onclick="goToSlide(3)"></span>
     </div>
-  </a>
+  </section>
 
-  <a href="contact.html">
-    <div class="glass rounded-xl p-6 text-center">
-      <i class="fa-solid fa-phone-volume text-4xl text-green-300 mb-3"></i>
-      <h3 class="text-xl font-semibold">Contact Us</h3>
+  <!-- QUICK NAV CARDS -->
+  <section class="max-w-6xl mx-auto px-6 pb-20 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <a href="about.html">
+      <div class="glass rounded-xl p-6 text-center">
+        <i class="fa-solid fa-circle-info text-4xl text-blue-300 mb-3"></i>
+        <h3 class="text-xl font-semibold">Company Profile</h3>
+      </div>
+    </a>
+    <a href="services.html">
+      <div class="glass rounded-xl p-6 text-center">
+        <i class="fa-solid fa-gears text-4xl text-purple-300 mb-3"></i>
+        <h3 class="text-xl font-semibold">Services</h3>
+      </div>
+    </a>
+    <a href="contact.html">
+      <div class="glass rounded-xl p-6 text-center">
+        <i class="fa-solid fa-phone-volume text-4xl text-green-300 mb-3"></i>
+        <h3 class="text-xl font-semibold">Contact Us</h3>
+      </div>
+    </a>
+  </section>
+
+  <!-- 🔥 SOCIAL MEDIA HUB -->
+  <section class="max-w-5xl mx-auto px-6 pb-28">
+    <h3 class="text-3xl font-bold neon-text text-center mb-10">Connect with Us</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@shihab.kt2?_r=1&_t=ZS-91ndDHTp3sT" target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-brands fa-tiktok text-4xl text-white mb-3"></i>
+          <h4 class="text-xl font-semibold">TikTok</h4>
+        </div>
+      </a>
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/1A5jwaUssF/" target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-brands fa-facebook text-4xl text-blue-400 mb-3"></i>
+          <h4 class="text-xl font-semibold">Facebook</h4>
+        </div>
+      </a>
+      <!-- WhatsApp -->
+      <a href="https://wa.me/message/UGNW3O4CX7Y5M1" target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-brands fa-whatsapp text-4xl text-green-400 mb-3"></i>
+          <h4 class="text-xl font-semibold">WhatsApp</h4>
+        </div>
+      </a>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=1077ptcr"
+        target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-brands fa-instagram text-4xl text-pink-400 mb-3"></i>
+          <h4 class="text-xl font-semibold">Instagram</h4>
+        </div>
+      </a>
+      <!-- Gallery (Google Drive) -->
+      <a href="https://drive.google.com/drive/folders/1pYohwE5yLOlZw9P7XpRRc3QHqiSDOT9k?usp=sharing" target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-solid fa-images text-4xl text-rose-400 mb-3"></i>
+          <h4 class="text-xl font-semibold">Gallery</h4>
+        </div>
+      </a>
+      <!-- About Docs (Google Drive PDF) -->
+      <a href="https://drive.google.com/file/d/1kIKwQVGvzKFyceqJJ5o1tsLU7ACQZdTm/view?usp=sharing" target="_blank">
+        <div class="glass p-6 rounded-xl text-center">
+          <i class="fa-solid fa-file-pdf text-4xl text-red-500 mb-3"></i>
+          <h4 class="text-xl font-semibold">About Document</h4>
+        </div>
+      </a>
     </div>
-  </a>
+  </section>
 
-</section>
+  <!-- FOOTER -->
+  <footer class="text-center py-6 border-t border-gray-700">
+    <p class="text-gray-400 text-sm">Developed by <span class="text-blue-400">Muhammad Hisham.KT</span></p>
+  </footer>
 
-<!-- 🔥 SOCIAL MEDIA HUB -->
-<section class="max-w-5xl mx-auto px-6 pb-28">
-  <h3 class="text-3xl font-bold neon-text text-center mb-10">Connect with Us</h3>
+  <script>
+    // Image Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const sliderWrapper = document.getElementById('sliderWrapper');
+    const totalSlides = slides.length;
+    let autoPlayInterval;
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    // Move to specific slide
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+    }
 
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@shihab.kt2?_r=1&_t=ZS-91ndDHTp3sT" target="_blank">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-brands fa-tiktok text-4xl text-white mb-3"></i>
-        <h4 class="text-xl font-semibold">TikTok</h4>
-      </div>
-    </a>
+    // Move slide by direction (-1 for prev, 1 for next)
+    function moveSlide(direction) {
+      currentSlide += direction;
+      // Loop around
+      if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+      } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+      }
+      updateSlider();
+    }
 
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/share/1A5jwaUssF/">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-brands fa-facebook text-4xl text-blue-400 mb-3"></i>
-        <h4 class="text-xl font-semibold">Facebook</h4>
-      </div>
-    </a>
+    // Update slider position and active states
+    function updateSlider() {
+      // Move slider
+      sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+      // Update active slide
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+      // Reset auto-play timer
+      resetAutoPlay();
+    }
 
-    <!-- WhatsApp -->
-    <a href="https://wa.me/message/UGNW3O4CX7Y5M1">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-brands fa-whatsapp text-4xl text-green-400 mb-3"></i>
-        <h4 class="text-xl font-semibold">WhatsApp</h4>
-      </div>
-    </a>
+    // Auto-play functionality
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(() => {
+        moveSlide(1);
+      }, 5000); // Change slide every 5 seconds
+    }
 
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=1077ptcr">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-brands fa-instagram text-4xl text-pink-400 mb-3"></i>
-        <h4 class="text-xl font-semibold">Instagram</h4>
-      </div>
-    </a>
+    function resetAutoPlay() {
+      clearInterval(autoPlayInterval);
+      startAutoPlay();
+    }
 
-    <!-- Gallery (Google Drive) -->
-    <a href="https://drive.google.com/drive/folders/1pYohwE5yLOlZw9P7XpRRc3QHqiSDOT9k?usp=sharing">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-solid fa-images text-4xl text-rose-400 mb-3"></i>
-        <h4 class="text-xl font-semibold">Gallery</h4>
-      </div>
-    </a>
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        moveSlide(-1);
+      } else if (e.key === 'ArrowRight') {
+        moveSlide(1);
+      }
+    });
 
-    <!-- About Docs (Google Drive PDF) -->
-    <a href="https://drive.google.com/file/d/1kIKwQVGvzKFyceqJJ5o1tsLU7ACQZdTm/view?usp=sharing">
-      <div class="glass p-6 rounded-xl text-center">
-        <i class="fa-solid fa-file-pdf text-4xl text-red-500 mb-3"></i>
-        <h4 class="text-xl font-semibold">About Document</h4>
-      </div>
-    </a>
+    // Touch/Swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-  </div>
-</section>
+    sliderWrapper.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
 
-<!-- FOOTER -->
-<footer class="text-center py-6 border-t border-gray-700">
-  <p class="text-gray-400 text-sm">
-    Developed by <span class="text-blue-400">Muhammad Hisham.KT</span>
-  </p>
-</footer>
+    sliderWrapper.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
 
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) {
+        moveSlide(1); // Swipe left
+      }
+      if (touchEndX > touchStartX + 50) {
+        moveSlide(-1); // Swipe right
+      }
+    }
+
+    // Pause auto-play on hover
+    const sliderContainer = document.querySelector('.slider-container');
+
+    sliderContainer.addEventListener('mouseenter', () => {
+      clearInterval(autoPlayInterval);
+    });
+
+    sliderContainer.addEventListener('mouseleave', () => {
+      startAutoPlay();
+    });
+
+    // Initialize slider
+    startAutoPlay();
+  </script>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

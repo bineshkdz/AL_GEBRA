@@ -1,48 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>About | AL GEBRA</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+  <meta charset="UTF-8" />
+  <title>About Us | AL GEBRA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<body class="bg-[#0b0f1c] text-white">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<header class="bg-black/40 backdrop-blur-sm sticky top-0">
-  <nav class="max-w-6xl mx-auto flex justify-between px-6 py-4">
-    <h1 class="font-bold text-xl">AL GEBRA</h1>
-    <ul class="flex gap-6 text-gray-300">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-<section class="max-w-4xl mx-auto px-6 py-24">
-  <h2 class="text-4xl font-bold mb-8 text-blue-300">About AL GEBRA</h2>
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <p class="text-gray-300 leading-8">
-    AL GEBRA is a professional IT solutions provider offering end-to-end
-    business services including software, hardware, and consultancy.
-    We specialize in:
-  </p>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 100%);
+      background-attachment: fixed;
+      color: white;
+      font-family: "Inter", sans-serif;
+      min-height: 100vh;
+    }
 
-  <ul class="mt-6 space-y-3 text-gray-200">
-    <li>✔ Accounting Billing Software</li>
-    <li>✔ IT-related hardware installation</li>
-    <li>✔ Information Technology Network Services</li>
-    <li>✔ Computer System and Software Designing</li>
-    <li>✔ E-Commerce through Social Media & Websites</li>
-    <li>✔ Information Technology Consultancy</li>
-  </ul>
-</section>
+    /* Neon animated heading */
+    .neon-text {
+      background: linear-gradient(90deg, #4aa1ff, #8e54ff, #ff4dc1);
+      background-size: 300%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonMove 6s ease infinite;
+    }
 
-<footer class="text-center py-6 border-t border-gray-700 text-gray-400 text-sm">
-  Developed by <span class="text-blue-400">Muhammad Hisham.KT</span>
-</footer>
+    @keyframes neonMove {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Glass Card */
+    .glass {
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, .08);
+      transition: .3s ease;
+    }
+
+    .glass:hover {
+      background: rgba(255, 255, 255, .1);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 180, 255, .5);
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .stat-card .number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-card .label {
+      color: #9ca3af;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .value-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .value-item .icon {
+      font-size: 1.5rem;
+      color: #60a5fa;
+      margin-top: 0.25rem;
+    }
+
+    .value-item h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-item p {
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+  </style>
+
+<body>
+  <!-- NAVBAR -->
+  <header class="bg-black/50 backdrop-blur-sm sticky top-0 z-50">
+    <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="font-bold text-lg neon-text">AL GEBRA</h1>
+      <ul class="flex gap-6 text-gray-300">
+        <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+        <li><a href="about.html" class="hover:text-blue-400">About</a></li>
+        <li><a href="services.html" class="hover:text-blue-400">Services</a></li>
+        <li><a href="products.html" class="hover:text-blue-400">Products</a></li>
+        <li><a href="gallery.html" class="hover:text-blue-400">Gallery</a></li>
+        <li><a href="contact.html" class="hover:text-blue-400">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="text-center py-16 px-6">
+    <h2 class="text-4xl md:text-6xl font-extrabold neon-text mb-4">About AL GEBRA</h2>
+    <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+      Your trusted partner in digital transformation and IT excellence
+    </p>
+  </section>
+
+  <!-- COMPANY OVERVIEW -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="glass rounded-2xl p-8 md:p-12">
+      <h3 class="text-3xl font-bold mb-6 text-blue-300">Who We Are</h3>
+      <p class="text-gray-300 text-lg leading-relaxed mb-6">
+        <strong class="text-white">AL GEBRA</strong> is a leading Information Technology solutions provider dedicated to
+        empowering businesses through innovative technology and exceptional service. With years of expertise in the IT
+        industry, we specialize in delivering comprehensive solutions that drive growth, efficiency, and digital
+        transformation.
+      </p>
+      <p class="text-gray-300 text-lg leading-relaxed mb-6">
+        Our team of skilled professionals combines technical expertise with business acumen to understand your unique
+        challenges and deliver tailored solutions that exceed expectations. From small startups to established
+        enterprises, we partner with businesses across various industries to help them leverage technology for
+        competitive advantage.
+      </p>
+      <p class="text-gray-300 text-lg leading-relaxed">
+        At AL GEBRA, we don't just provide services – we build lasting relationships based on trust, transparency, and
+        measurable results. Our commitment to excellence and customer satisfaction has made us a preferred choice for
+        businesses seeking reliable IT solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- STATISTICS -->
+  <section class="max-w-6xl mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass rounded-xl stat-card">
+        <div class="number">5+</div>
+        <div class="label">Years of Experience</div>
+      </div>
+      <div class="glass rounded-xl stat-card">
+        <div class="number">100+</div>
+        <div class="label">Projects Completed</div>
+      </div>
+      <div class="glass rounded-xl stat-card">
+        <div class="number">50+</div>
+        <div class="label">Happy Clients</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR MISSION & VISION -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- Mission -->
+      <div class="glass rounded-2xl p-8">
+        <div class="text-4xl text-blue-400 mb-4">
+          <i class="fas fa-bullseye"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+        <p class="text-gray-300 leading-relaxed">
+          To empower businesses with innovative IT solutions that enhance productivity, streamline operations, and drive
+          sustainable growth. We are committed to delivering excellence through cutting-edge technology and personalized
+          service.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="glass rounded-2xl p-8">
+        <div class="text-4xl text-purple-400 mb-4">
+          <i class="fas fa-eye"></i>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+        <p class="text-gray-300 leading-relaxed">
+          To be the most trusted and innovative IT solutions provider, recognized for transforming businesses through
+          technology and creating lasting value for our clients, partners, and communities.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CORE VALUES -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="glass rounded-2xl p-8 md:p-12">
+      <h3 class="text-3xl font-bold mb-8 text-center neon-text">Our Core Values</h3>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div>
+            <h4>Excellence</h4>
+            <p>We strive for excellence in everything we do, delivering high-quality solutions that exceed client
+              expectations.</p>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <div>
+            <h4>Integrity</h4>
+            <p>We conduct business with honesty, transparency, and ethical practices, building trust with our clients
+              and partners.</p>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div>
+            <h4>Innovation</h4>
+            <p>We embrace new technologies and creative solutions to stay ahead of industry trends and deliver
+              cutting-edge services.</p>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div>
+            <h4>Customer Focus</h4>
+            <p>Our clients are at the heart of everything we do. We listen, understand, and deliver solutions tailored
+              to their needs.</p>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div>
+            <h4>Reliability</h4>
+            <p>We deliver consistent, dependable service and support, ensuring our clients can count on us when it
+              matters most.</p>
+          </div>
+        </div>
+
+        <div class="value-item">
+          <div class="icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div>
+            <h4>Growth</h4>
+            <p>We are committed to continuous improvement and helping our clients achieve sustainable business growth.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE OFFER -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="glass rounded-2xl p-8 md:p-12">
+      <h3 class="text-3xl font-bold mb-6 text-blue-300">What We Offer</h3>
+      <p class="text-gray-300 text-lg leading-relaxed mb-6">
+        AL GEBRA provides a comprehensive range of IT services designed to meet the diverse needs of modern businesses:
+      </p>
+
+      <ul class="space-y-4 text-gray-300">
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">Accounting & Billing Software:</strong> Streamline your financial operations
+            with our intuitive and powerful software solutions.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">Hardware Installation:</strong> Professional setup and configuration of IT
+            hardware infrastructure for optimal performance.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">Network Services:</strong> Robust network solutions to keep your business
+            connected, secure, and efficient.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">Software Design & Development:</strong> Custom software solutions tailored to
+            your specific business requirements.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">E-Commerce Solutions:</strong> Build and grow your online presence with our
+            comprehensive digital commerce services.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <i class="fas fa-check-circle text-blue-400 text-xl mt-1"></i>
+          <span><strong class="text-white">IT Consultancy:</strong> Expert guidance and strategic planning for your
+            technology investments and digital transformation.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="max-w-4xl mx-auto px-6 pb-20 text-center">
+    <div class="glass rounded-2xl p-12">
+      <h3 class="text-3xl font-bold neon-text mb-4">Let's Work Together</h3>
+      <p class="text-gray-300 text-lg mb-8">
+        Ready to transform your business with cutting-edge IT solutions? Get in touch with us today!
+      </p>
+      <a href="contact.html"
+        class="inline-block px-10 py-3 text-lg bg-blue-600 hover:bg-blue-700 rounded-md font-semibold transition">
+        Contact Us
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center py-6 border-t border-gray-700">
+    <p class="text-gray-400 text-sm">
+      Developed by <span class="text-blue-400">Muhammad Hisham.KT</span>
+    </p>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
