@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AL GEBRA | IT Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      background: #0b0f1c;
+      color: white;
+      font-family: "Inter", sans-serif;
+    }
+
+    /* Neon animated heading */
+    .neon-text {
+      background: linear-gradient(90deg, #4aa1ff, #8e54ff, #ff4dc1);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: neonMove 6s ease infinite;
+    }
+    @keyframes neonMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glass Card */
+    .glass {
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .3s ease;
+    }
+    .glass:hover {
+      background: rgba(255,255,255,.1);
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0,180,255,.5);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="bg-black/50 backdrop-blur-sm sticky top-0 z-50">
+  <nav class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
+    <h1 class="font-bold text-lg neon-text">AL GEBRA</h1>
+    <ul class="flex gap-6 text-gray-300">
+      <li><a href="index.html" class="hover:text-blue-400">Home</a></li>
+      <li><a href="about.html" class="hover:text-blue-400">About</a></li>
+      <li><a href="services.html" class="hover:text-blue-400">Services</a></li>
+      <li><a href="contact.html" class="hover:text-blue-400">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="text-center py-24 px-6">
+  <h2 class="text-5xl md:text-7xl font-extrabold neon-text">AL GEBRA</h2>
+
+  <p class="mt-6 text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+    Accounting Billing Software • Hardware IT devices installation •
+    Network Services • Computer & Software Designing •
+    E-Commerce Through Social Media & Websites •
+    Information Technology Consultancy.
+  </p>
+
+  <a href="contact.html" class="mt-10 inline-block px-10 py-3 text-lg bg-blue-600 hover:bg-blue-700 rounded-md font-semibold">
+    Get in Touch
+  </a>
+</section>
+
+<!-- QUICK NAV CARDS -->
+<section class="max-w-6xl mx-auto px-6 pb-20 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+  <a href="about.html">
+    <div class="glass rounded-xl p-6 text-center">
+      <i class="fa-solid fa-circle-info text-4xl text-blue-300 mb-3"></i>
+      <h3 class="text-xl font-semibold">Company Profile</h3>
+    </div>
+  </a>
+
+  <a href="services.html">
+    <div class="glass rounded-xl p-6 text-center">
+      <i class="fa-solid fa-gears text-4xl text-purple-300 mb-3"></i>
+      <h3 class="text-xl font-semibold">Services</h3>
+    </div>
+  </a>
+
+  <a href="contact.html">
+    <div class="glass rounded-xl p-6 text-center">
+      <i class="fa-solid fa-phone-volume text-4xl text-green-300 mb-3"></i>
+      <h3 class="text-xl font-semibold">Contact Us</h3>
+    </div>
+  </a>
+
+</section>
+
+<!-- 🔥 SOCIAL MEDIA HUB -->
+<section class="max-w-5xl mx-auto px-6 pb-28">
+  <h3 class="text-3xl font-bold neon-text text-center mb-10">Connect with Us</h3>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@shihab.kt2?_r=1&_t=ZS-91ndDHTp3sT" target="_blank">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-brands fa-tiktok text-4xl text-white mb-3"></i>
+        <h4 class="text-xl font-semibold">TikTok</h4>
+      </div>
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/share/1A5jwaUssF/">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-brands fa-facebook text-4xl text-blue-400 mb-3"></i>
+        <h4 class="text-xl font-semibold">Facebook</h4>
+      </div>
+    </a>
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/message/UGNW3O4CX7Y5M1">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-brands fa-whatsapp text-4xl text-green-400 mb-3"></i>
+        <h4 class="text-xl font-semibold">WhatsApp</h4>
+      </div>
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=1077ptcr">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-brands fa-instagram text-4xl text-pink-400 mb-3"></i>
+        <h4 class="text-xl font-semibold">Instagram</h4>
+      </div>
+    </a>
+
+    <!-- Gallery (Google Drive) -->
+    <a href="https://drive.google.com/drive/folders/1pYohwE5yLOlZw9P7XpRRc3QHqiSDOT9k?usp=sharing">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-solid fa-images text-4xl text-rose-400 mb-3"></i>
+        <h4 class="text-xl font-semibold">Gallery</h4>
+      </div>
+    </a>
+
+    <!-- About Docs (Google Drive PDF) -->
+    <a href="https://drive.google.com/file/d/1kIKwQVGvzKFyceqJJ5o1tsLU7ACQZdTm/view?usp=sharing">
+      <div class="glass p-6 rounded-xl text-center">
+        <i class="fa-solid fa-file-pdf text-4xl text-red-500 mb-3"></i>
+        <h4 class="text-xl font-semibold">About Document</h4>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="text-center py-6 border-t border-gray-700">
+  <p class="text-gray-400 text-sm">
+    Developed by <span class="text-blue-400">Muhammad Hisham.KT</span>
+  </p>
+</footer>
+
+</body>
+</html>
